@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
-class DishDetail extends Component {
 
-    constructor(props) {
-        super(props);
-    }
- 
-    renderDish(dish) {
+
+    function RenderDish({dish}) {
         if (dish != null) {
             return (
                 <div className="col-md-5 col-12 m-1">
@@ -29,12 +25,12 @@ class DishDetail extends Component {
 
     
 
-    renderComments(dish) {
+    function RenderComments({dish}) {
         if (dish != null) {
             const commentsJsx = dish.comments.map((comment) => {
                 return (
                     <li key={comment.id}><p>{comment.comment}</p>
-                        <p>--{comment.author}, {this.formatDate(comment.date)}</p>
+                        <p>--{comment.author}, {FormatDate(comment.date)}</p>
                     </li>
                 );
             });
@@ -53,20 +49,20 @@ class DishDetail extends Component {
         }
     }
 
-    render() {
-        console.log(this.props.dish);
+    const DishDetail = (props) => {
+        console.log('DishDetail render invoked');
         return (
             <div className="container">
                 <div className="row">
-                    {this.renderDish(this.props.dish)}
-                    {this.renderComments(this.props.dish)}
+                    <RenderDish dish={props.dish} />
+                    <RenderComments dish={props.dish} />
                 </div>
             </div>
         );
 
     }
 
-    formatDate(dateString) {
+    function FormatDate(dateString) {
 
         var date = new Date(dateString);
         var year = date.getFullYear();
@@ -75,5 +71,5 @@ class DishDetail extends Component {
 
         return (month + " " + day + ", " + year);
     }
-}
+
 export default DishDetail;
