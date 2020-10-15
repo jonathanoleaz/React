@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import Menu from './MenuComponent';
 import Contact from './ContactComponent';
-import { DISHES } from '../shared/dishes';
-import { COMMENTS } from '../shared/comments';
-import { LEADERS } from '../shared/leaders';
-import { PROMOTIONS } from '../shared/promotions';
 import DishDetail from './DishDetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
+import AboutComponent from './AboutComponent';
 import {Switch, Route, Redirect} from 'react-router-dom';
 
+import { DISHES } from '../shared/dishes';
+import { COMMENTS } from '../shared/comments';
+import { LEADERS } from '../shared/leaders';
+import { PROMOTIONS } from '../shared/promotions';
 
 /**
  * @description: Component dedicated to track the state of the application
@@ -59,6 +60,7 @@ class Main extends Component {
                                                                     onClick={(dishId) => this.onDishSelect(dishId)} />}/>
                     <Route path="/menu/:dishId" component={DishWithId} />
                     <Route exact path="/contactus" component={Contact}/>
+                    <Route path="/about" component={()=> <AboutComponent leaders={this.state.leaders} />}/>
                     <Redirect to="/home" />
                 </Switch>                
                 <Footer/>

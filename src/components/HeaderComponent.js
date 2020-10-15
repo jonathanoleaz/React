@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             isNavOpen: false
         };
 
@@ -15,7 +15,7 @@ class Header extends Component {
     }
 
 
-    toggleNav(){
+    toggleNav() {
         this.setState({
             isNavOpen: !this.state.isNavOpen
         })
@@ -37,22 +37,27 @@ class Header extends Component {
                                 <NavItem>
                                     <NavLink className="nav-link" to="/home">
                                         <span className="fa fa-home fa-lg"></span> Home
-                                </NavLink>
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/aboutus">
+                                    <NavLink className="nav-link" to="/about">
                                         <span className="fa fa-info fa-lg"></span> About us
-                                </NavLink>
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink className="nav-link" to="/menu">
                                         <span className="fa fa-list fa-lg"></span> Menu
-                                </NavLink>
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink className="nav-link" to="/contactus">
                                         <span className="fa fa-address-card fa-lg"></span> Contact us
-                                </NavLink>
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/about">
+                                        <span className="fa fa-address-card fa-lg"></span> About
+                                    </NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>
