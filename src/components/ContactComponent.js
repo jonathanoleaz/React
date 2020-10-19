@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Row, FormGroup, Label, Input, Col, FormFeedback } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Row, Label, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
@@ -156,7 +156,7 @@ class Contact extends Component {
                                     <Col md={{ size: 6, offset: 2 }}>
                                         <div className="form-check">
                                             <Label check>
-                                                <Control.checkbox model=".agree" name="agree"
+                                                <Control.checkbox model=".agree" name="agree" id="agree"
                                                     className="form-check-input"
                                                 />{' '}
                                                 <strong>May we contact you?</strong>
@@ -164,7 +164,7 @@ class Contact extends Component {
                                         </div>
                                     </Col>
                                     <Col md={{ size: 3, offset: 1 }}>
-                                        <Control.select model=".contactType" name="contactType"
+                                        <Control.select model=".contactType" name="contactType" id="contactType"
                                             className="form-control">
                                             <option>Tel.</option>
                                             <option>Email</option>
