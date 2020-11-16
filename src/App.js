@@ -5,6 +5,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
 
+/**
+ * To run this app, is also needed running the following (backend) miniserver, its command: 
+ * 'json-server --watch db.json -d 500 -p 3001'
+ */
 const store = ConfigureStore();
 
 class App extends Component {

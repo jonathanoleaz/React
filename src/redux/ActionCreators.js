@@ -139,7 +139,6 @@ export const addComments = (comments) => ({
 });
 
 
-
 ///////////
 
 
@@ -188,4 +187,53 @@ export const promosFailed = (errmess) => ({
 export const addPromos = (promos) => ({
     type: ActionTypes.ADD_PROMOS,
     payload: promos
+});
+///////////
+
+
+//Example of a thunk
+/**
+ /**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
+ */
+export const fetchLeaders = () => (dispatch) => {
+    dispatch(promosLoading(true));
+
+    return fetch(baseUrl + 'leaders')
+        .then(response => {
+            if (response.ok) {
+                return response;
+            }
+            else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => {
+                var errmess = new Error(error.message);
+                throw errmess;
+            })
+        .then(response => response.json())
+        .then(leaders => dispatch(addLeaders(leaders)))
+        .catch(error => dispatch(leadersFailed(error.message)));
+    /*setTimeout(() => {
+        dispatch(addDishes(DISHES));
+    }, 2000);*/
+}
+
+/**Returns an action object */
+export const leadersLoading = () => ({
+    type: ActionTypes.LEADERS_LOADING
+});
+
+/**Returns an action object */
+export const leadersFailed = (errmess) => ({
+    type: ActionTypes.LEADERS_FAILED,
+    payload: errmess
+});
+
+/**Returns an action object */
+export const addLeaders = (leaders) => ({
+    type: ActionTypes.ADD_LEADERS,
+    payload: leaders
 });

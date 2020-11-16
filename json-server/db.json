@@ -250,6 +250,13 @@
       "comment": "goooogle",
       "date": "2020-11-08T20:36:49.011Z",
       "id": 26
+    },
+    {
+      "dishId": 1,
+      "author": "Aldo Olea",
+      "comment": "I liked so much this dish, it is recommendable for everyone who prefers sauces",
+      "date": "2020-11-09T15:10:40.391Z",
+      "id": 27
     }
   ],
   "promotions": [
