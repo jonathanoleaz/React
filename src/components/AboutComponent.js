@@ -3,46 +3,50 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'r
 import { Link } from 'react-router-dom';
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function About(props) {
 
     const leaders = props.leaders.leaders.map((leader) => {
 
-        if (props.isLoading) {
-            return (
-                <div className="container">
-                    <div className="row">
-                        <Loading />
-                    </div>
-                </div>
-            );
-        } else if (props.errMess) {
-            return (
-                <div className="container">
-                    <div className="row">
-                        <h4>{props.errMess}</h4>
-                    </div>
-                </div>
-            );
-        }else if (props.leaders != null){
-            return (
-                <RenderLeader leader={leader} />
-            );
-        }
+        return (
+
+            <RenderLeader leader={leader} />
+
+        );
+
     });
 
-    return(
-        <div className="container">
-            <div className="row">
-                <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>About Us</BreadcrumbItem>
-                </Breadcrumb>
-                <div className="col-12">
-                    <h3>About Us</h3>
-                    <hr />
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
                 </div>
             </div>
+        );
+    } else if (props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.errMess}</h4>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>About Us</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>About Us</h3>
+                        <hr />
+                    </div>
+                </div>
+                {/*
             <div className="row row-content">
                 <div className="col-12 col-md-6">
                     <h2>Our History</h2>
@@ -81,18 +85,25 @@ function About(props) {
                     </Card>
                 </div>
             </div>
-            <div className="row row-content">
-                <div className="col-12">
-                    <h2>Corporate Leadership</h2>
-                </div>
-                <div className="col-12">
-                    <Media list>
-                        {leaders}
-                    </Media>
+            */}
+                <div className="row row-content">
+                    <div className="col-12">
+                        <h2>Corporate Leadership</h2>
+                    </div>
+                    <div className="col-12">
+                        <Media list>
+                            <Stagger in>
+                                <Fade in>
+                                    {leaders}
+                                </Fade>
+                            </Stagger>
+                        </Media>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+
 }
 
 

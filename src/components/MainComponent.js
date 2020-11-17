@@ -8,7 +8,7 @@ import Home from './HomeComponent';
 import AboutComponent from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchComments, fetchDishes, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { postComment, postFeedback, fetchComments, fetchDishes, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
@@ -25,6 +25,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => ({
     postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
+    postFeedback: (newFeedback) => dispatch(postFeedback(newFeedback)),
     fetchDishes: () => { dispatch(fetchDishes()) },
     resetFeedbackForm: () => { dispatch(actions.reset('feedback')) },
 
@@ -97,11 +98,12 @@ class Main extends Component {
                             <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes}
                                 onClick={(dishId) => this.onDishSelect(dishId)} />} />
                             <Route path="/menu/:dishId" component={DishWithId} />
-                            <Route exact path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm}/>} />
+                            <Route exact path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm}
+                            postFeedback={this.props.postFeedback}/>} />
                             <Route path="/about" component={() => <AboutComponent leaders={this.props.leaders} 
                             leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
-                            leadersLoading={this.props.leaders.isLoading}
-                            leadersErrMess={this.props.leaders.errMess}/>} />
+                            isLoading={this.props.leaders.isLoading}
+                            errMess={this.props.leaders.errMess}/>} />
                             <Redirect to="/home" />
                         </Switch>
                     </CSSTransition>

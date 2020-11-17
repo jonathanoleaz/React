@@ -14,9 +14,9 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
         author: author,
         comment: comment
     }
-
+    
     newComment.date = new Date().toISOString();
-
+    
     return fetch(baseUrl + 'comments', {
         method: 'POST',
         body: JSON.stringify(newComment),
@@ -35,43 +35,43 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
             throw error;
         }
     },
-        error => {
-            throw error;
-        })
+    error => {
+        throw error;
+    })
     .then(response => response.json())
     .then(response => dispatch(addComment(response)))
     .catch(error => {
         console.log('Post comments ', error.message);
-        alert('Comment could not be posted: '+error.message);
+        alert('Comment could not be posted: ' + error.message);
     });
     
 }
 //Example of a thunk
 /**
- /**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
- */
+/**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
+*/
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
-
+    
     return fetch(baseUrl + 'dishes')
-        .then(response => {
-            if (response.ok) {
-                return response;
-            }
-            else {
-                var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                error.response = response;
-                throw error;
-            }
-        },
-            error => {
-                var errmess = new Error(error.message);
-                throw errmess;
-            })
-        .then(response => response.json())
-        .then(dishes => dispatch(addDishes(dishes)))
-        .catch(error => dispatch(dishesFailed(error.message)));
-
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(dishes => dispatch(addDishes(dishes)))
+    .catch(error => dispatch(dishesFailed(error.message)));
+    
     /*setTimeout(() => {
         dispatch(addDishes(DISHES));
     }, 2000);*/
@@ -97,29 +97,29 @@ export const addDishes = (dishes) => ({
 
 //Example of a thunk
 /**
- /**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
- */
+/**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
+*/
 export const fetchComments = () => (dispatch) => {
     dispatch(dishesLoading(true));
-
+    
     return fetch(baseUrl + 'comments')
-        .then(response => {
-            if (response.ok) {
-                return response;
-            }
-            else {
-                var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                error.response = response;
-                throw error;
-            }
-        },
-            error => {
-                var errmess = new Error(error.message);
-                throw errmess;
-            })
-        .then(response => response.json())
-        .then(comments => dispatch(addComments(comments)))
-        .catch(error => dispatch(commentsFailed(error.message)));
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(comments => dispatch(addComments(comments)))
+    .catch(error => dispatch(commentsFailed(error.message)));
     /*setTimeout(() => {
         dispatch(addDishes(DISHES));
     }, 2000);*/
@@ -144,29 +144,29 @@ export const addComments = (comments) => ({
 
 //Example of a thunk
 /**
- /**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
- */
+/**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
+*/
 export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading(true));
-
+    
     return fetch(baseUrl + 'promotions')
-        .then(response => {
-            if (response.ok) {
-                return response;
-            }
-            else {
-                var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                error.response = response;
-                throw error;
-            }
-        },
-            error => {
-                var errmess = new Error(error.message);
-                throw errmess;
-            })
-        .then(response => response.json())
-        .then(promos => dispatch(addPromos(promos)))
-        .catch(error => dispatch(promosFailed(error.message)));
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(promos => dispatch(addPromos(promos)))
+    .catch(error => dispatch(promosFailed(error.message)));
     /*setTimeout(() => {
         dispatch(addDishes(DISHES));
     }, 2000);*/
@@ -193,29 +193,29 @@ export const addPromos = (promos) => ({
 
 //Example of a thunk
 /**
- /**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
- */
+/**Returns an function that is going to dispatch or call several actions: dishesLoading and add dishes
+*/
 export const fetchLeaders = () => (dispatch) => {
     dispatch(promosLoading(true));
-
+    
     return fetch(baseUrl + 'leaders')
-        .then(response => {
-            if (response.ok) {
-                return response;
-            }
-            else {
-                var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                error.response = response;
-                throw error;
-            }
-        },
-            error => {
-                var errmess = new Error(error.message);
-                throw errmess;
-            })
-        .then(response => response.json())
-        .then(leaders => dispatch(addLeaders(leaders)))
-        .catch(error => dispatch(leadersFailed(error.message)));
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(leaders => dispatch(addLeaders(leaders)))
+    .catch(error => dispatch(leadersFailed(error.message)));
     /*setTimeout(() => {
         dispatch(addDishes(DISHES));
     }, 2000);*/
@@ -237,3 +237,50 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+
+
+//////
+
+
+export const postFeedback = (feedback) => (dispatch) => {
+    const newFeedback = {
+        feedbackId: feedback.feedbackId,
+        firstname: feedback.firstname,
+        lastname: feedback.lastname,
+        telnum: feedback.telnum,
+        email: feedback.email,
+        agree: feedback.agree,
+        contactType: feedback.contactType,
+        message: feedback.message
+    }
+    
+    
+    return fetch(baseUrl + 'feedback', {
+        method: 'POST',
+        body: JSON.stringify(newFeedback),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        throw error;
+    })
+    .then(response => response.json())
+    .then(response => alert(JSON.stringify(response)))
+    .catch(error => {
+        console.log('Post comments ', error.message);
+        alert('Comment could not be posted: ' + error.message);
+    });
+    
+}
